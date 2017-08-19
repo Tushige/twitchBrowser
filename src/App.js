@@ -24,7 +24,9 @@ class Avatar extends React.Component {
     render() {
         return (
             <div className="avatar">
-                <Profile channelName={this.props.channelName}
+                <Profile
+                         channelName={this.props.channelName}
+                         url={this.props.url}
                          game={this.props.game}
                          viewers={this.props.viewers}
                          followers={this.props.followers}>

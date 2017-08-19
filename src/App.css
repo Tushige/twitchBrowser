@@ -1,23 +1,33 @@
 .App {
   text-align: center;
-  font-family: lato;
 }
 
 .App-header {
-  background-color: #42097c;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    color:black;
+    background-color: white;
+    height: 150px;
+    padding: 20px;
+    color: white;
+    border-bottom: 1px solid #cecece;
+}
+.App-header h1 {
+    color:black;
+    font-family:'Lato', sans-serif;
+    font-size:48px;
+    font-weight:100;
 }
 a {
     text-align: left;
     text-decoration: none;
-    color: black;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
 }
 .table {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    background-color: #f7f7f7;
 }
 
 /* container for channel image and info*/
@@ -36,22 +46,26 @@ a {
     left:0;
     right:0;
     margin: auto;
-    z-index:-2;
+    z-index:1;
     color:white;
+    opacity:0;
+    transition: opacity 0.5s;
     background-color:#000;
 }
 /* show channel info on hover*/
 .twitcher-profile-overlay:hover {
-    z-index:10;
+    z-index:2;
+    opacity:0.5;
+    transition: opacity 0.5s;
 }
 .avatar img {
     opacity:1;
-    z-index:10;
+    z-index:2;
     transition: opacity 0.5s;
 }
 /* image will fade away on hover to show channel info*/
 .avatar img:hover {
+    z-index:1;
     opacity:0.5;
     transition: opacity 0.5s;
-    z-index:-2;
 }
