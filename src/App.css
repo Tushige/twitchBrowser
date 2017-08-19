@@ -51,6 +51,7 @@ a {
     opacity:0;
     transition: opacity 0.5s;
     background-color:#000;
+    cursor: pointer;
 }
 /* show channel info on hover*/
 .twitcher-profile-overlay:hover {
@@ -68,4 +69,22 @@ a {
     z-index:1;
     opacity:0.5;
     transition: opacity 0.5s;
+}
+#btn-load {
+    cursor: pointer;
+    text-decoration: none;
+    outline:none;
+    background-color: #451651;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-family:'Lato', sans-serif;
+    font-size:18px;
+    font-weight:bold;
+    margin: 50px;
+    width:200px;
+    height:40px;
+}
+#btn-load:active {
+    opacity: 0.5;
 }

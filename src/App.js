@@ -61,7 +61,7 @@ class TwitcherTable extends React.Component {
     constructor() {
         super();
         this.state = {
-            twitchers: []
+            twitchers: [],
         };
     }
 
@@ -71,7 +71,7 @@ class TwitcherTable extends React.Component {
     componentDidMount() {
          let httpRequest = new XMLHttpRequest();
          //responseHandler = responseHandler.bind(this);
-         let apiUrl = 'https://api.twitch.tv/kraken/streams?client_id=fh1q2fz6crohr35x1ucszbq8imixq2u';
+         let apiUrl = 'https://api.twitch.tv/kraken/streams?limit=25&offset=25&client_id=fh1q2fz6crohr35x1ucszbq8imixq2u';
          function responseHandler() {
              if (httpRequest.readyState === httpRequest.DONE) {
                  if (httpRequest.status === 200) {
@@ -86,6 +86,28 @@ class TwitcherTable extends React.Component {
         httpRequest.open("GET", apiUrl, true);
         httpRequest.send();
      }
+    _loadContentHandler(event) {
+        event.preventDefault();
+        let httpRequest = new XMLHttpRequest();
+        //responseHandler = responseHandler.bind(this);
+        let offset = this.state.twitchers.length;
+        let apiUrl = `https://api.twitch.tv/kraken/streams?limit=25&offset=${offset}&client_id=fh1q2fz6crohr35x1ucszbq8imixq2u`;
+        function responseHandler() {
+            if (httpRequest.readyState === httpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var newTwitchData = JSON.parse(httpRequest.response).streams;
+                    let twitchData = this.state.twitchers;
+                    twitchData = twitchData.concat(newTwitchData);
+                    this.setState({
+                        twitchers: twitchData,
+                    });
+               }
+           }
+       }
+       httpRequest.onreadystatechange = responseHandler.bind(this);
+       httpRequest.open("GET", apiUrl, true);
+       httpRequest.send();
+    }
     render() {
         let twitcher_list = null;
         /*embed twitch user data in Twitcher component*/
@@ -100,8 +122,11 @@ class TwitcherTable extends React.Component {
         }
 
         return (
-            <div className="table">
-                {twitcher_list}
+            <div>
+                <div className="table">
+                    {twitcher_list}
+                </div>
+                <button id="btn-load" onClick={this._loadContentHandler.bind(this)}>Load More</button>
             </div>
         )
     }
