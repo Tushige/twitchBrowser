@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.2",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "axios":"*"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
